@@ -1,1 +1,1 @@
-document.querySelector('.main-text')
+document.querySelector('.main-text').textContent = "Loaded!";
