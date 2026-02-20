@@ -4,6 +4,8 @@ document.querySelector('.main-text').textContent = options[random_num];
 
 let canvas = document.getElementById('main-canvas');
 let ctx = canvas.getContext('2d');
+ctx.fillStyle = `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, ${Math.random()})`;
+ctx.fillRect(getRandomInt(25,100), getRandomInt(25,100), getRandomInt(1,100), getRandomInt(1,100));
 
 
 /**range excludes max number*/
