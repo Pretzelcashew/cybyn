@@ -2,7 +2,8 @@ let options = ['minerals', 'halogen', 'gelatin'];
 random_num = getRandomInt(0,options.length);
 document.querySelector('.main-text').textContent = options[random_num];
 
-let ctx = document.getElementById('main-canvas');
+let canvas = document.getElementById('main-canvas');
+let ctx = canvas.getContext('2d');
 
 
 /**range excludes max number*/
