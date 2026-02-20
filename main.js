@@ -1,5 +1,5 @@
 let options = ['minerals', 'halogen', 'gelatin'];
-let random_num = getRandomInt(0,options.length);
+let random_num = getRandomInt(0,options.length-1);
 document.querySelector('.main-text').textContent = options[random_num];
 
 function getRandomInt(min, max) {
