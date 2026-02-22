@@ -11,3 +11,7 @@
 #main-canvas {
   border: 1px groove darkmagenta;
 }
+
+.info-text {
+  color:rgb(189, 240, 240);
+}
