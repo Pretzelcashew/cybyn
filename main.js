@@ -9,7 +9,7 @@ canvas.height = 400;
 
 ctx.fillStyle = "rgb(182, 255, 203)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 50; i++) {
 ctx.fillStyle = `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, ${Math.random()})`;
 ctx.fillRect(getRandomInt(0,canvas.width), getRandomInt(0,canvas.height), getRandomInt(1,100), getRandomInt(1,100));
 document.body.insertAdjacentHTML('beforeend', '<div>I am guaranteed to appear, and I changed, again!</div>');
