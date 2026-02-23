@@ -11,7 +11,7 @@ ctx.fillStyle = "rgb(182, 255, 203)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
 ctx.fillStyle = `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, ${Math.random()})`;
-ctx.fillRect(getRandomInt(25,100), getRandomInt(25,100), getRandomInt(1,100), getRandomInt(1,100));
+ctx.fillRect(getRandomInt(0,canvas.width), getRandomInt(0,canvas.height), getRandomInt(1,100), getRandomInt(1,100));
 
 
 /**range excludes max number*/
