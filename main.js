@@ -1,5 +1,5 @@
 let options = ['minerals', 'halogen', 'gelatin'];
-random_num = getRandomInt(0,options.length);
+let random_num = getRandomInt(0,options.length);
 document.querySelector('.main-text').textContent = options[random_num];
 
 let canvas = document.getElementById('main-canvas');
