@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: black;
+  color: white;
+}
+
+#left-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Changed from flex-end to flex-start */
+}
+
+#left-stack > * {
+  display: block;
+  text-align: left;        /* Changed from right to left */
+}
+canvas {
+  border: 1px groove darkmagenta;
+  margin-top: 10px;
+  touch-action: none;
+}
