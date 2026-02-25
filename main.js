@@ -1,24 +1,6 @@
-const wait = ms => new Promise(res => setTimeout(res, ms));
-const mod = (n, m) => ((n % m) + m) % m;
-/**range excludes max number*/
-const getRandomInt = (min, max) => {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+import * as util from './util.js';
 
-const getAccessibiltyColor = (r, g, b) => {
-    // 1. Normalize and apply Gamma Expansion to get Linear values
-    const [rl, gl, bl] = [r, g, b].map(v => {
-        let s = v / 255;
-        return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
-    });
 
-    // 2. Calculate Relative Luminance
-    const L = 0.2126 * rl + 0.7152 * gl + 0.0722 * bl;
-
-    // 3. Use the WCAG threshold for the best of Black vs White
-    // This ensures a minimum 4.5:1 ratio (usually closer to 4.58:1)
-    return L > 0.179 ? [0, 0, 0] : [255, 255, 255];
-};
 
 
 
@@ -40,7 +22,7 @@ let counter = 0;
 let counter_max = 100;
 
 let options = ['minerals', 'halogen', 'gelatin'];
-let random_num = getRandomInt(0,options.length);
+let random_num = util.getRandomInt(0,options.length);
 document.querySelector('.info-text').textContent = options[random_num];
 
 let canvas = document.getElementById('main-canvas');
@@ -61,7 +43,7 @@ canvas.onpointermove = (e) => {
 
 
 const change_bg = () => {
-  bg_color = [getRandomInt(0,255),getRandomInt(0,255),getRandomInt(0,255)];
+  bg_color = [util.getRandomInt(0,255),util.getRandomInt(0,255),util.getRandomInt(0,255)];
 }
 
 let lastTime = 0;
@@ -81,7 +63,7 @@ function frame(currentTime) {
   //console.log(`Pointer: x: ${mouseX}, y: ${mouseY}`);
   ctx.fillStyle = `rgb(${bg_color[0]},${bg_color[1]},${bg_color[2]})`;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  const inv = getAccessibiltyColor(bg_color[0], bg_color[1], bg_color[2]);
+  const inv = util.getAccessibiltyColor(bg_color[0], bg_color[1], bg_color[2]);
   ctx.fillStyle = `rgb(${inv[0]},${inv[1]},${inv[2]})`; 
   ctx.font = "bold 27px Arial";
   ctx.textBaseline = "top"; 
