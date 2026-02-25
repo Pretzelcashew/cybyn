@@ -1,11 +1,6 @@
 import * as util from './util.js';
 
-
-
-
-
 document.getElementById("left-stack").insertAdjacentHTML('afterbegin', '<div>Welcome to Cybyn</div>');
-
 
 let canvas_elements = new Map();
 

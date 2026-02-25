@@ -1,5 +1,8 @@
+
 export const wait = ms => new Promise(res => setTimeout(res, ms));
+
 export const mod = (n, m) => ((n % m) + m) % m;
+
 /**range excludes max number*/
 export const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
