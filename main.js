@@ -1,4 +1,5 @@
 import * as util from './util.js';
+import * as input from './input.js';
 
 document.getElementById("left-stack").insertAdjacentHTML('afterbegin', '<div>Welcome to Cybyn</div>');
 
@@ -13,8 +14,6 @@ let bg_color = [126,100,226];
 
 let mouseX = 0;
 let mouseY = 0;
-let counter = 0;
-let counter_max = 100;
 
 let options = ['minerals', 'halogen', 'gelatin'];
 let random_num = util.getRandomInt(0,options.length);
