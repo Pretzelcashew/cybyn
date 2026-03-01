@@ -1,6 +1,13 @@
 import * as util from './util.js';
 import * as input from './input.js';
 
+const keyListen = (e) => {
+  if(e.repeat) return;
+  console.log("input from main.js: "+e.key);
+}
+
+input.keyDownListener.add(keyListen);
+
 document.getElementById("left-stack").insertAdjacentHTML('afterbegin', '<div>Welcome to Cybyn</div>');
 
 let canvas_elements = new Map();
@@ -25,9 +32,7 @@ let ctx = canvas.getContext('2d');
 ctx.fillStyle = "rgb(182, 255, 203)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
-window.addEventListener('keydown', (e) => {
-  console.log(e.key);
-});
+
 
 // This covers Mouse, Pen, and Touch
 canvas.onpointermove = (e) => {
