@@ -1,13 +1,6 @@
 import * as util from './util.js';
 import * as input from './input.js';
 
-const keyListen = (e) => {
-  if(e.repeat) return;
-  console.log("input from main.js: "+e.key);
-}
-
-input.keyDownListener.add(keyListen);
-
 document.getElementById("left-stack").insertAdjacentHTML('afterbegin', '<div>Welcome to Cybyn</div>');
 
 let canvas_elements = new Map();

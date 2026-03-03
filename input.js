@@ -1,12 +1,17 @@
-export let keyDownListener = new Set();
-
+export let keyDownListenerMap = new Map([
+  ['a', new Map([
+    ['evil', () => {console.log("evil things are happening!")}]
+  ])]
+]);
 
 window.addEventListener('keydown', (e) => {
-  //console.log("input from input.js: "+e.key);
 
-  for(const fn of keyDownListener){
-    fn(e);
+  const actions = keyDownListenerMap.get(e.key);
+
+  if (actions) {
+    for (const [name, fn] of actions){
+      fn();
+    }
   }
-
 
 });
