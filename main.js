@@ -1,6 +1,25 @@
 import * as util from './util.js';
 import * as input from './input.js';
 
+
+
+let worker = new Worker('tick.js');
+let lastTick = performance.now();
+
+worker.onmessage = () => {
+    let currentTick = performance.now();
+    let deltaTime = currentTick - lastTick; // Exactly how long it actually took
+    
+    // In a perfect world, deltaTime is 16.00000
+    // In reality, it might be 16.23451
+    console.log(deltaTime);
+    
+    lastTick = currentTick;
+};
+
+let tick_counter = 0;
+
+
 document.getElementById("left-stack").insertAdjacentHTML('afterbegin', '<div>Welcome to Cybyn</div>');
 
 let canvas_elements = new Map();
@@ -47,6 +66,7 @@ function frame(currentTime) {
   change_bg_cooldown -= delta;
   //console.log(delta)
   if (change_bg_cooldown <= 0) {
+    //console.log(++tick_counter);
     change_bg_cooldown = change_bg_cooldown_max;
     change_bg();
   }
