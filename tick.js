@@ -1,3 +1,3 @@
 setInterval(() => {
     postMessage('');
-}, 16);
+}, 1000);

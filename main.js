@@ -4,6 +4,7 @@ import * as renderer from './renderer.js';
 
 //#region Variable Init
 
+
 let tick = null;
 let lastTick = performance.now();
 
@@ -27,14 +28,15 @@ let ctx = canvas.getContext('2d');
 let canvas_elements = new Map([
   ['object_01',new Map([
     ['position',new Map([['x',100],['y',100]])],
-    ['scale',new Map([['x',1],['y',1]])],
-    ['render', (self_ref,context) => {
-      const position = self_ref.get('position');
-      const x = position.get('x');
-      const y = position.get('y');
-      context.fillStyle = "rgb(70, 23, 146)";
-      context.fillRect(x,y,25,25);
-    }],
+    ['scale',new Map([['x',0.25],['y',0.25]])],
+    ['render', renderer.prefab.get('random_number_sprite')],
+    ['parent',ctx],
+    ['children',new Map()]
+  ])],
+    ['object_02',new Map([
+    ['position',new Map([['x',160],['y',70]])],
+    ['scale',new Map([['x',1.5],['y',1.5]])],
+    ['render', renderer.prefab.get('random_number_sprite')],
     ['parent',ctx],
     ['children',new Map()]
   ])]
@@ -83,7 +85,7 @@ let pause = () => {
 let unpause = () => {
   if (tick !== null) return;
   console.log('resume');
-  tick = new Worker('tick.js');
+  tick = new Worker('./tick.js');
   tick.onmessage = () => {
     let currentTick = performance.now();
     let deltaTime = currentTick - lastTick;
