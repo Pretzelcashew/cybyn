@@ -3,6 +3,7 @@
 import * as util from './util.js';
 import * as input from './input.js';
 import * as renderer from './renderer.js';
+import * as bvh from './bvh.js';
 
 //#endregion
 
@@ -26,27 +27,37 @@ document.querySelector('.info-text').textContent = options[random_num];
 let canvas = document.getElementById('main-canvas');
 let ctx = canvas.getContext('2d');
 
-let canvas_elements = {
-  object_01: {
-    position: { x: 100, y: 100 },
-    scale: { x: 1, y: 1 },
-    aabb: { x1: 0, y1: 0, x2: 0, y2: 0 },
-    render: renderer.prefab.random_number_sprite,
-    parent: ctx,
-    children: [] //object_2
-  },
-  object_02: {
-    position: { x: 160, y: 170 },
-    scale: { x: 1, y: 1 },
-    aabb: { x1: 0, y1: 0, x2: 0, y2: 0 },
-    render: renderer.prefab.rect_sprite,
-    parent: null, //object_01
-    children: []
-  }
-}
 
+let tx = 0; let ty = 0; let tw = 10; let th = 10;
+
+let canvas_elements = {};
+
+tx = 55; ty = 74, tw = 32; th = 79;
+canvas_elements.object_01 = {
+  position: { x: tx, y: tx },
+  scale: { x: 1, y: 1 },
+  aabb: { x1: tx - tw, y1: ty - th, x2: tx + tw, y2: ty + th },
+  render: renderer.prefab.aabb_sprite,
+  parent: ctx,
+  children: []
+};
+
+tx = 200; ty = 300, tw = 100; th = 21;
+canvas_elements.object_02 = {
+  position: { x: tx, y: tx },
+  scale: { x: 1, y: 1 },
+  aabb: { x1: tx - tw, y1: ty - th, x2: tx + tw, y2: ty + th },
+  render: renderer.prefab.aabb_sprite,
+  parent: canvas_elements.object_01,
+  children: []
+};
 canvas_elements.object_01.children.push(canvas_elements.object_02);
-canvas_elements.object_02.parent = canvas_elements.object_01;
+
+
+let main_bvh = bvh.create();
+bvh.insert(main_bvh,
+  bvh.create(canvas_elements.object_01)
+);
 
 //#endregion
 

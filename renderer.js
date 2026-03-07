@@ -39,7 +39,24 @@ export let prefab = {
         const scale_y = scale.y;
         context.strokeStyle = "rgb(0, 255, 13)";
         context.lineWidth = 1;
-        context.strokeRect(x,y,64,64);
+        context.strokeRect(x, y, 64, 64);
+    },
+    aabb_sprite: (self_ref, context) => {
+        const position = self_ref.position;
+        const x = position.x;
+        const y = position.y;
+        const aabb = self_ref.aabb;
+        const x1 = aabb.x1;
+        const y1 = aabb.y1;
+        const w = aabb.x2 - x1;
+        const h = aabb.y2 - y1;
+        const scale = self_ref.scale;
+        const scale_x = scale.x;
+        const scale_y = scale.y;
+        context.strokeStyle = "rgb(255, 0, 0)";
+        context.lineWidth = 1;
+        context.strokeRect(x1, y1, w, h);
     }
+
 
 };
