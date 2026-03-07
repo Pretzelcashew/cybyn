@@ -24,22 +24,42 @@ let canvas = document.getElementById('main-canvas');
 let ctx = canvas.getContext('2d');
 
 let canvas_elements = new Map([
-  ['object_01',new Map([
-    ['position',new Map([['x',100],['y',100]])],
-    ['scale',new Map([['x',1],['y',1]])],
+  ['object_01', new Map([
+    ['position', new Map([['x', 100], ['y', 100]])],
+    ['scale', new Map([['x', 1], ['y', 1]])],
     ['render', renderer.prefab.get('rect_sprite')],
-    ['parent',ctx],
-    ['children',new Map()]
+    ['parent', ctx],
+    ['children', new Map()]
   ])],
-    ['object_02',new Map([
-    ['position',new Map([['x',160],['y',70]])],
-    ['scale',new Map([['x',1],['y',1]])],
+  ['object_02', new Map([
+    ['position', new Map([['x', 160], ['y', 70]])],
+    ['scale', new Map([['x', 1], ['y', 1]])],
     ['render', renderer.prefab.get('rect_sprite')],
-    ['parent',ctx],
-    ['children',new Map()]
+    ['parent', ctx],
+    ['children', new Map()]
   ])]
 
 ]);
+
+let canvas_elements_2 = {
+  object_01: {
+    position: { x: 100, y: 100 },
+    scale: { x: 1, y: 1 },
+    render: renderer.prefab.get('rect_sprite'),
+    parent: ctx,
+    children: [] //object_2
+  },
+  object_02: {
+    position: { x: 100, y: 100 },
+    scale: { x: 1, y: 1 },
+    render: renderer.prefab.get('rect_sprite'),
+    parent: null, //object_01
+    children: []
+  }
+}
+
+canvas_elements_2.object_01.children.push(canvas_elements_2.object_02);
+canvas_elements_2.object_02.parent = canvas_elements_2.object_01;
 
 //#endregion
 
@@ -95,7 +115,7 @@ let unpause = () => {
     let deltaTime = currentTick - lastTick;
     lastTick = currentTick;
     frame(deltaTime);
-    
+
   };
 };
 
@@ -108,8 +128,8 @@ unpause();
 
 function frame(delta) {
 
-  renderer.render(canvas_elements,ctx);
-  
+  renderer.render(canvas_elements, ctx);
+
 };
 
 
